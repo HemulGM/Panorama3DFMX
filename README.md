@@ -12,6 +12,8 @@ The Viewer works on all Firemonkey Platforms.
 
 Written in Delphi, no additional Librarys needed.
 
+Delphi 13 supports
+
 Example-Images included.
 
 Enjoy the Power of FMX!
