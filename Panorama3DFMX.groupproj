@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{1D51D49A-2842-4706-BD88-AE7B1E96F64D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Packages\Panorama3DFMX.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Demo\PanoDemo.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Panorama3DFMX">
+        <MSBuild Projects="Packages\Panorama3DFMX.dproj"/>
+    </Target>
+    <Target Name="Panorama3DFMX:Clean">
+        <MSBuild Projects="Packages\Panorama3DFMX.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Panorama3DFMX:Make">
+        <MSBuild Projects="Packages\Panorama3DFMX.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PanoDemo">
+        <MSBuild Projects="Demo\PanoDemo.dproj"/>
+    </Target>
+    <Target Name="PanoDemo:Clean">
+        <MSBuild Projects="Demo\PanoDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PanoDemo:Make">
+        <MSBuild Projects="Demo\PanoDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Panorama3DFMX;PanoDemo"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Panorama3DFMX:Clean;PanoDemo:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Panorama3DFMX:Make;PanoDemo:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

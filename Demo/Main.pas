@@ -8,43 +8,29 @@ uses
   FMX.Controls.Presentation, FMX.StdCtrls;
 
 type
-  TfrmMain = class(TForm)
-    Pano: TPanorama3D;
+  TFormMain = class(TForm)
     ToolBar1: TToolBar;
-    BtnOpen: TButton;
+    ButtonOpen: TButton;
     OpenDialog: TOpenDialog;
-    procedure PanoChange(Sender: TObject);
-    procedure BtnOpenClick(Sender: TObject);
+    Panorama3D: TPanorama3D;
+    procedure ButtonOpenClick(Sender: TObject);
   private
-    { Private-Deklarationen }
   public
-    { Public-Deklarationen }
   end;
 
 var
-  frmMain: TfrmMain;
+  FormMain: TFormMain;
 
 implementation
 
 {$R *.fmx}
 
-procedure TfrmMain.BtnOpenClick(Sender: TObject);
+procedure TFormMain.ButtonOpenClick(Sender: TObject);
 begin
   OpenDialog.Filter := TBitmapCodecManager.GetFilterString;
   if OpenDialog.Execute then
-  try
-    Pano.Bitmap.LoadFromFile(OpenDialog.Filename);
-  except
-    on E: Exception do
-    begin
-      ShowMessage(E.Message);
-    end;
-  end;
-end;
-
-procedure TfrmMain.PanoChange(Sender: TObject);
-begin
-//  Caption := 'X: ' + FormatFloat('0.00', Pano.CameraX) + ' Y:' + FormatFloat('0.00', Pano.CameraY) + ' Z:' + FormatFloat('0.00', Pano.Zoom);
+    Panorama3D.Load(OpenDialog.Filename);
 end;
 
 end.
+
